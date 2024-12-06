@@ -76,6 +76,7 @@ public class Brick {
 		else if(hp>=1)
 			g.setColor(Color.red);
            g.fillRect(x, y, width, height);
+		
 		   
 	}
 	
