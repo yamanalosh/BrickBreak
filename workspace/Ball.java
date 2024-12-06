@@ -6,6 +6,7 @@ public class Ball {
 	//don't forget you need instance variables:
 	
 	
+	
 	//constructor(s):
 	
 	//methods:
