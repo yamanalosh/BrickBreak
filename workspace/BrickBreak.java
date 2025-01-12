@@ -45,7 +45,7 @@ public class BrickBreak extends JPanel implements KeyListener, ActionListener {
 		mapWidth = width;
 		mapHeight = height;
 		totalBricks = mapWidth * mapHeight;
-		player = new Paddle(310, 550, 100, 8);
+		player = new Paddle(310, 20, 100, 550);
 		ball = new Ball(350, 450, 20);
 
 		map = new Brick[mapHeight][mapWidth];
@@ -96,6 +96,8 @@ public class BrickBreak extends JPanel implements KeyListener, ActionListener {
 		
 		//the ball
 		ball.draw(g);
+
+		checkCollision(g);
 		
 		//check for game over
 		if (ball.getYpos() > 570) {
@@ -120,11 +122,14 @@ public class BrickBreak extends JPanel implements KeyListener, ActionListener {
 
 	//precondition: the game has been properly initialized
 	//postcondition: detects collision between the ball and other surfaces and changes the ball's direction accordingly.
-	private void checkCollision() {
+	private void checkCollision(Graphics g) {
 
 		Rectangle ballHitBox = new Rectangle(ball.getXpos(), ball.getYpos(), ball.getSize(), ball.getSize());
 		Rectangle playerHitBox = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 		
+		g.setColor(Color.magenta);
+		g.drawRect(ballHitBox.x, ballHitBox.y, ballHitBox.width, ballHitBox.height);
+		g.drawRect(playerHitBox.x, playerHitBox.y, playerHitBox.width, playerHitBox.height);
 		// paddle collision
 		if (ballHitBox.intersects(playerHitBox)) {
 			ball.reverseY();
@@ -184,7 +189,7 @@ public class BrickBreak extends JPanel implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (play) {
-			checkCollision();
+			//checkCollision();
 			ball.move();
 			player.move();
 		}
